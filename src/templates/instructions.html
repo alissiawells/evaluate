@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block head_title %}
+{% with titlepage='Инструкция по выполнению задания' %}
+EvaluateMe | {{titlepage}}
+{% endwith %}
+{% endblock head_title %}
+<style>
+  {% block style %}
+  {% endblock style %}
+</style>
+{% block content %}
+
+<div class="col-sm-12 content-markdown">
+{{ instruction }}
+</div>
+
+{% endblock content %}

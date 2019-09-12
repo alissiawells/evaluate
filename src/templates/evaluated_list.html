@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block head_title %}
+{% with titlepage='История оценок' %}
+EvaluateMe | {{titlepage}}
+{% endwith %}
+{% endblock head_title %}
+<style>
+  {% block style %}
+  {% endblock style %}
+</style>
+{% block content %}
+
+<h3 align="center">Вы вошли в систему как {{user}}. Список ваших ответов заданного типа. Всего ответов: {{evaluated_list|length}}</h3>
+<div class="table-responsive">
+  <table class="table table-striped table-hover table-bordered table-condensed"  style="font-size:15px;">
+  <thead class="inverse">
+    <tr>
+      <th>№</th>
+      <th>ID</th>
+      <th>Посл. изменение</th>
+      <th>Оцениваемый объект</th>
+      {% if show_text_answer_field %}<th>Текстовый ответ</th>{% endif %}
+    </tr>
+  </thead>
+  <tbody data-link="row" class="rowlink">
+    {% for obj in evaluated_list%}
+    <tr>
+    <td>{{forloop.revcounter}}</td>
+    <td><a href="{% url 'evaluation:edit_eval' %}{{obj.0.get_task_id}}/" style="text-decoration:none;color:inherit;">{{obj.0.get_task_id}}</a></td>
+    <td>{{forloop.counter}} {{obj.0.get_updated|date:"d.m.Y H:i"}}</td>
+    <td>{{obj.1.get_title | truncatechars:100}}</td>
+    {% if show_text_answer_field %}<td>{{obj.0.get_text_answer | truncatechars:40}}</td>{% endif %}
+    </tr>
+    {% endfor %}
+  </tbody>
+  </table>
+</div>
+
+<h4>{{ content }}</h4>
+
+{% endblock content %}

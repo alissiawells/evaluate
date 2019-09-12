@@ -1,0 +1,120 @@
+{% extends "base.html" %}
+{% block head_title %}
+{% with titlepage='Просмотр оценки' %}
+EvaluateMe | {{titlepage}}
+{% endwith %}
+{% endblock head_title %}
+<style>
+  {% block style %}
+  {% endblock style %}
+</style>
+{% block content %}
+
+<div class='col-sm-12'>
+    <h4 style="margin-top:0px;">{{ eval_object.title }}</br></h4>
+        <div class='row'>
+        {% if eval_object.get_info_list %}
+        <div class='col-sm-9'>
+                {{eval_object.content | linebreaks }}
+        </div>
+        <div class='col-sm-3'>
+            <div class="col-sm-12">
+            <h4><small>{{eval_object.timestamp}}</small></h4>
+            </div>
+            <div class="col-sm-12">
+                {% for info in eval_object.get_info_list %}
+                <!-- <hr> -->
+                {{ info | linebreaks }}
+                {% endfor %}
+            </div>
+        </div>
+        {% else %}
+        <div class='col-sm-12'>
+                <h4><small>{{eval_object.timestamp}}</small></h4>
+                {{eval_object.content | linebreaks }}
+        </div>
+        {% endif %}
+    </div>
+</br>
+</div>
+<form action="" method="post">
+  <div class="col-sm-12 checkbox">
+    <label  style="float:right;"><input type="checkbox" name="reject" id="is_rejected" value="True" {% if is_rejected %}checked=""{% endif %}>Отказаться от оценивания?</label>
+  </div>
+<div class='col-sm-12' id="hidable" {% if is_rejected %}style="display:none;"{% endif %}>
+<div {% if show_text_answer_field == False %}style="display:none;"{% endif %}>
+<hr>
+{% csrf_token %}
+    <div class="form-group row">
+        <label for="id_text_answer" class="col-sm-2 col-form-label">Введите строку ответа:</label>
+        <div class="col-sm-10">
+            <input type="hidden" id="textAnswer" name="variable" value="{{ textAnswer }}">
+            <input class="form-control" id="id_text_answer" autocomplete="off" maxlength="400" list="answers" name="text_answer" type="text" value="{{default_text_answer}}" {% if textAnswer %}required{%endif%} >
+            <datalist id="answers">
+                {% for given_answ in given_answers %}
+                <option value="{{ given_answ }}">
+                {% endfor %}
+            </datalist>
+
+        </div>
+    </div>
+</br>
+</div>
+{% for var in variants %}
+    <hr>
+    <div class='row'>
+    <div class='col-sm-2'>
+    <div class="btn-group" data-toggle="buttons">
+    {% for choise in choises %}
+
+    <label class="btn btn-default {% ifequal choise.0 var.1 %}active{% endifequal %}">
+        <input type="radio" name="{{ var.0.get_pk }}" id="id {{ var.0.get_pk }}" value="{{ choise.0 }}"
+        {% ifequal choise.0 var.1 %}checked=""{% endifequal %}>{{ choise.1 }}
+    </label>
+
+    {% endfor %}
+    </div>
+    </div>
+    <div class='col-sm-10'>
+    <div class='row'>
+    <!-- <label for="id {{ var.get_pk }}"> -->
+        <h4 style="margin-top:0px;">{{ var.0.title }}</br></h4>
+        <div class='row'>
+            {% if var.0.get_info_list %}
+            <div class='col-sm-9'>
+                    {{var.0.content | linebreaks }}
+            </div>
+            <div class='col-sm-3'>
+                <div class="col-sm-12">
+                <h4><small>{{var.0.timestamp}}</small></h4>
+                </div>
+                <div class="col-sm-12">
+                    {% for info in var.0.get_info_list %}
+                    <!-- <hr> -->
+                    {{ info | linebreaks }}
+                    {% endfor %}
+                </div>
+            </div>
+            {% else %}
+            <div class='col-sm-12'>
+                <h4><small>{{var.0.timestamp}}</small></h4>
+                {{var.0.content | linebreaks }}
+            </div>
+            {% endif %}
+        </div>
+    <!-- </label> -->
+    </div>
+    </div>
+    </div>
+{% endfor %}
+<hr>
+</div>
+<div class='col-sm-12' style='padding-bottom:20px;'>
+<input type="submit" class="btn btn-default" value="Сохранить изменения" style="float:right;"/>
+</div>
+</form>
+
+
+
+
+{% endblock content %}

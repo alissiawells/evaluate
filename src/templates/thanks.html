@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block head_title %}
+{% with titlepage='Спасибо за работу!' %}
+EvaluateMe | {{titlepage}}
+{% endwith %}
+{% endblock head_title %}
+<style>
+  {% block style %}
+  {% endblock style %}
+</style>
+{% block content %}
+
+<div class="col-sm-10 col-sm-offset-1" style="text-align:center;">
+<h3> <br> На данный момент нет не размеченных Вами задач выбранного типа! <br><br> Спасибо, {{user}}!</h3>
+</div>
+{% endblock content %}

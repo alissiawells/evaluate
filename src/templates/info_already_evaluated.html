@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block head_title %}
+{% with titlepage='Это задание уже выполнено' %}
+EvaluateMe | {{titlepage}}
+{% endwith %}
+{% endblock head_title %}
+<style>
+  {% block style %}
+  {% endblock style %}
+</style>
+{% block content %}
+
+<h3>This task (task_id = {{task_id}}) is already evaluated!</h3>
+
+<p><a href="{% url 'evaluation:edit_eval' %}{{task_id}}/">Edit evaluation for this task</a></p>
+<p><a href="{% url 'evaluation:eval_form' %}">Evaluate new task!</a></p>
+
+{% endblock content %}
