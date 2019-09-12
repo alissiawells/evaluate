@@ -1,31 +1,42 @@
-# evaluate
+## EvaluateMe
+Django application for evaluation output of ML models by humans
 
-# $conda create -n evaluateme django
+### Use:
 
-# $source activate evaluateme
+* Make migrations: 
+```sh
+$ python manage.py makemigrations [APPNAME]
+$ python manage.py migrate
+```
 
-# $pip install -r requirements.txt
+* Collect static:
+```sh
+$ python manage.py collectstatic
+```
 
-# $mkdir -p static_cdn
-# $mkdir -p media_cdn
+* Populate database with prepared fixture file:
+```sh
+$ python manage.py loaddata fixture /path/to/fixture/file
+```
 
+* Run server on localhost 
+```sh
+$ python manage.py runserver
+```
 
-# #########################################################
-# ##### COMMANDS FOR MANAGING DJANGO APPLICATION ##########
-# #########################################################
+* Run server on remote machine (in local network) 
+```sh
+$ python manage.py runserver 0.0.0.0:8000
+```
 
-# #make migrations
-# $python manage.py makemigrations [APPNAME]
-# $python manage.py migrate
-#
-# #collect static
-# $python manage.py collectstatic
-#
-# #To populate database with prepared fixture file:
-# $python manage.py loaddata fixture /path/to/fixture/file
-#
-# # Run server on localhost 
-# $python manage.py runserver
-#
-# # Run server on remote machine (in local network) 
-# $python manage.py runserver 0.0.0.0:8000
+### Installation:
+Install Python, Pipenv, Postgres
+```sh
+$ git clone https://github.com/alissiawells/evaluate.git
+$ cd evaluate
+$ conda create -n evaluateme django
+$ source activate evaluateme
+$ pip install -r requirements.txt
+$ mkdir -p static_cdn
+$ mkdir -p media_cdn
+```
