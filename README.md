@@ -1,7 +1,7 @@
 ## EvaluateMe
 Django application for evaluation output of ML models by humans
 
-### Use:
+### Use
 
 * Make migrations: 
 ```sh
@@ -19,18 +19,18 @@ $ python manage.py collectstatic
 $ python manage.py loaddata fixture /path/to/fixture/file
 ```
 
-* Run server on localhost 
+* Run server on localhost:
 ```sh
 $ python manage.py runserver
 ```
 
-* Run server on remote machine (in local network) 
+* Run server on remote machine (in local network):
 ```sh
 $ python manage.py runserver 0.0.0.0:8000
 ```
 
 ### Installation:
-Install Python, Pipenv, Postgres
+* Install Python, Pipenv, Postgres:
 ```sh
 $ git clone https://github.com/alissiawells/evaluate.git
 $ cd evaluate
