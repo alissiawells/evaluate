@@ -13,7 +13,7 @@ $ mkdir -p static_cdn
 $ mkdir -p media_cdn
 ```
 
-### Use
+### Use:
 
 * Make migrations: 
 ```sh
