@@ -17,6 +17,7 @@ $ mkdir -p media_cdn
 
 * Make migrations: 
 ```sh
+$ cd src
 $ python manage.py migrate
 ```
 
@@ -32,6 +33,5 @@ $ python manage.py runserver
 
 * Run server on remote machine (in local network):
 ```sh
-$ cd src
 $ python manage.py runserver 0.0.0.0:8000
 ```
