@@ -26,6 +26,7 @@ $ python manage.py runserver
 
 * Run server on remote machine (in local network):
 ```sh
+$ cd src
 $ python manage.py runserver 0.0.0.0:8000
 ```
 
@@ -34,8 +35,8 @@ $ python manage.py runserver 0.0.0.0:8000
 ```sh
 $ git clone https://github.com/alissiawells/evaluate.git
 $ cd evaluate
-$ conda create -n evaluateme django
-$ source activate evaluateme
+$ virtualenv -p /usr/bin/python3 evaluate
+$ source evaluate/bin/activate
 $ pip install -r requirements.txt
 $ mkdir -p static_cdn
 $ mkdir -p media_cdn
